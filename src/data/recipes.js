@@ -9,7 +9,6 @@ const dishes = [
     image: " https://t4.ftcdn.net/jpg/03/61/86/91/360_F_361869194_7JGmIOSj2iUNi0AYoVhVyhKvaN6PkOah.jpg",
     chef: "Chef Arjun Singh",
     time: "45 mins",
-    tags: ["chicken", "spicy", "gravy", "north indian"]
   },
   {
     id: 2,
@@ -21,7 +20,6 @@ const dishes = [
     image: "https://t4.ftcdn.net/jpg/03/61/86/91/360_F_361869194_7JGmIOSj2iUNi0AYoVhVyhKvaN6PkOah.jpg",
     chef: "Chef Marco Rossi",
     time: "30 mins",
-    tags: ["pizza", "cheese", "vegetarian", "baked"]
   },
   {
     id: 3,
@@ -33,7 +31,6 @@ const dishes = [
     image: "https://t4.ftcdn.net/jpg/03/61/86/91/360_F_361869194_7JGmIOSj2iUNi0AYoVhVyhKvaN6PkOah.jpg",
     chef: "Chef Sato Kenji",
     time: "50 mins",
-    tags: ["seafood", "sushi", "raw", "japanese"]
   },
   {
     id: 4,
@@ -45,7 +42,6 @@ const dishes = [
     image: "https://t4.ftcdn.net/jpg/03/61/86/91/360_F_361869194_7JGmIOSj2iUNi0AYoVhVyhKvaN6PkOah.jpg",
     chef: "Chef Maria Lopez",
     time: "25 mins",
-    tags: ["tacos", "pork", "street food", "spicy"]
   },
   {
     id: 5,
@@ -57,7 +53,6 @@ const dishes = [
     image: "https://t4.ftcdn.net/jpg/03/61/86/91/360_F_361869194_7JGmIOSj2iUNi0AYoVhVyhKvaN6PkOah.jpg",
     chef: "Chef Anong Srisuk",
     time: "35 mins",
-    tags: ["noodles", "thai", "sweet", "spicy"]
   },
   {
     id: 6,
@@ -69,7 +64,6 @@ const dishes = [
     image: "https://t4.ftcdn.net/jpg/03/61/86/91/360_F_361869194_7JGmIOSj2iUNi0AYoVhVyhKvaN6PkOah.jpg",
     chef: "Chef Laura Johnson",
     time: "40 mins",
-    tags: ["fish", "grilled", "healthy", "omega-3"]
   },
   {
     id: 7,
@@ -81,7 +75,6 @@ const dishes = [
     image: "https://t4.ftcdn.net/jpg/03/61/86/91/360_F_361869194_7JGmIOSj2iUNi0AYoVhVyhKvaN6PkOah.jpg",
     chef: "Chef Wong Wei",
     time: "90 mins",
-    tags: ["duck", "roasted", "crispy", "chinese"]
   },
   {
     id: 8,
@@ -93,7 +86,6 @@ const dishes = [
     image: "https://t4.ftcdn.net/jpg/03/61/86/91/360_F_361869194_7JGmIOSj2iUNi0AYoVhVyhKvaN6PkOah.jpg",
     chef: "Chef Leila Hassan",
     time: "20 mins",
-    tags: ["vegetarian", "wrap", "chickpeas", "healthy"]
   },
   {
     id: 9,
@@ -105,7 +97,6 @@ const dishes = [
     image: "https://t4.ftcdn.net/jpg/03/61/86/91/360_F_361869194_7JGmIOSj2iUNi0AYoVhVyhKvaN6PkOah.jpg",
     chef: "Chef Dmitri Ivanov",
     time: "60 mins",
-    tags: ["beef", "creamy", "comfort food", "russian"]
   },
   {
     id: 10,
@@ -117,7 +108,6 @@ const dishes = [
     image: "https://t4.ftcdn.net/jpg/03/61/86/91/360_F_361869194_7JGmIOSj2iUNi0AYoVhVyhKvaN6PkOah.jpg",
     chef: "Chef Nikos Papadopoulos",
     time: "15 mins",
-    tags: ["salad", "healthy", "feta", "vegetarian"]
   }
   ];
 

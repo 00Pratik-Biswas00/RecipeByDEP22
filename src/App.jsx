@@ -16,7 +16,7 @@ import dishes from "./data/recipes";
 function App() {
     return (
     <Router>
-    <Navbar />
+    <Navbar dishes={dishes}/>
     <div 
     style={{
       backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('https://t4.ftcdn.net/jpg/03/61/86/91/360_F_361869194_7JGmIOSj2iUNi0AYoVhVyhKvaN6PkOah.jpg')`,
