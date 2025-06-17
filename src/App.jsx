@@ -8,12 +8,20 @@ import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import RecomendedRecipe from "./pages/RecomendedRecipe"
+import Preferences from "./pages/PreferencesModal";
 
 function App() {
     return (
     <Router>
     <Navbar />
-    <>
+    <div 
+    style={{
+      backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('https://t4.ftcdn.net/jpg/03/61/86/91/360_F_361869194_7JGmIOSj2iUNi0AYoVhVyhKvaN6PkOah.jpg')`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      opacity: 50
+    }}
+    >
         <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/add" element={<AddOrEditRecipe />} />
@@ -21,9 +29,10 @@ function App() {
         <Route path="/my-recipes" element={<MyRecipes />} />
         <Route path="/recommended" element={<RecomendedRecipe />} />
         <Route path="/profile" element={<Profile />} />
+        {/* <Route path="/set-preferences" element={<Preferences />} /> */}
         <Route path="*" element={<NotFound />} />
     </Routes>
-    </>
+    </div>
     </Router>
     );
 }

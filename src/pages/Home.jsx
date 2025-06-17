@@ -167,12 +167,6 @@ function Home() {
 
   return (
     <div className="min-h-screen p-7"
-    style={{
-      backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('https://t4.ftcdn.net/jpg/03/61/86/91/360_F_361869194_7JGmIOSj2iUNi0AYoVhVyhKvaN6PkOah.jpg')`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      opacity: 50
-    }}
     >
     {/*The text part*/}
     <div className="p-4">
