@@ -135,7 +135,7 @@ function Home({dishes}) {
                   e.stopPropagation(); // Stop bubbling up to Link
                   handleLike(dish.id); // Run your like handler
                 }}
-                className="z-50 absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md"
+                className=" absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md"
               >
                 <svg
                   className={`w-5 h-5 ${likedDishes.includes(dish.id) ? "text-red-500" : "text-gray-400"}`}
