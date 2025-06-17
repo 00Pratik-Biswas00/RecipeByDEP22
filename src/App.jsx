@@ -13,7 +13,7 @@ function App() {
     return (
     <Router>
     <Navbar />
-    <div className="px-4 py-6">
+    <>
         <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/add" element={<AddOrEditRecipe />} />
@@ -23,7 +23,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
     </Routes>
-    </div>
+    </>
     </Router>
     );
 }

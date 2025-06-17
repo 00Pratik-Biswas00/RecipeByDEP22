@@ -3,14 +3,32 @@ import { Link, useLocation } from 'react-router-dom';
 import Sidebar from "../components/Sidebar";
 import { useNavigate } from 'react-router-dom';
 import Profile from '../pages/Profile';
+import RegisterModel from "../components/RegisterModel";
+import LoginModel from "../components/LoginModel";
 
 export default function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
   const navigate= useNavigate();
+
+
   const handleProfile=() => {
-    navigate("/profile");
+    // navigate("/profile");
+    setIsDropdownOpen((prev) => !prev);  
   }  
+
+   const handleLogin = () => {
+    console.log('Login clicked');
+    setIsDropdownOpen(false);
+  };
+
+  const handleRegister = () => {
+    console.log('Register clicked');
+    setIsDropdownOpen(false);
+  };
+
   return (
     <>
     <nav className="bg-gray-800 px-4 py-3 flex items-center justify-between">
@@ -19,9 +37,9 @@ export default function Navbar() {
         <button className="text-white hover:text-gray-300 transition-colors text-xl" onClick={() => setIsSidebarOpen(true)}>
           ☰
         </button>
-        <div className="bg-blue-600 text-white px-3 py-1 rounded font-semibold text-lg">
+        <a href='/' className="bg-blue-600 text-white px-3 py-1 rounded font-semibold text-lg">
           LOGO
-        </div>
+        </a>
       </div>
 
       {/* Center - Search bar */}
@@ -39,10 +57,36 @@ export default function Navbar() {
       </div>
 
       {/* Right side - Profile */}
-      <div className="flex items-center">
-        <button className="bg-cyan-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-semibold" onClick={handleProfile}>
+      <div className="relative flex items-center">
+        <button className="bg-cyan-500 text-white w-10 h-10 rounded-full flex items-center justify-center font-semibold" onClick={handleProfile}>
           U
         </button>
+
+        {isDropdownOpen && (
+        <div className="absolute top-12 right-0 bg-white border shadow-md py-1 w-32">
+          <button
+            onClick={()=>{
+              setShowLogin(true);
+              setIsDropdownOpen(false);
+            }}
+            className="block w-full text-left px-4 py-1 hover:bg-gray-100"
+          >
+            Login
+          </button>
+          <button
+            onClick={() => {
+              setShowRegister(true);
+              setIsDropdownOpen(false);
+            }}
+            className="block w-full text-left px-4 py-1 hover:bg-gray-100"
+          >
+            Register
+          </button>
+        </div>
+        )}
+
+        {showRegister && <RegisterModel onClose={() => setShowRegister(false)} />}
+        {showLogin && <LoginModel onClose={()=> setShowLogin(false)}/>}
       </div>
     </nav>
 
