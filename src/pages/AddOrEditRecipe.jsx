@@ -9,7 +9,7 @@ function AddOrEditRecipe() {
     };
     const handleSubmit= () =>{
         // navigate("/edit");
-        alert("Will be submitted successfully!");
+        alert("Will update this feature later!");
     };
 
   return (
