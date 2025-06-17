@@ -1,6 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const LoginModel = ({ onClose }) => {
+const ADMIN_CREDENTIALS = {
+  email: "superadmin@gmail.com",
+  password: "admin123",
+};
+
+const LoginModel = ({ onClose, setUserRole  }) => {
+    const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -14,21 +22,35 @@ const LoginModel = ({ onClose }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // First: check for admin credentials
+  if (formData.email === ADMIN_CREDENTIALS.email && formData.password === ADMIN_CREDENTIALS.password) {
+    setUserRole("admin");
+    localStorage.setItem("userRole", "admin");
+    navigate("/admin");
+    onClose();  // optional
+    return;     // important: stop further checks
+  }
+  
     const storedUser = JSON.parse(localStorage.getItem("user"));
-
     if (!storedUser) {
       alert("No registered user found!");
       return;
     }
-
     if (formData.email === storedUser.email && formData.password === storedUser.password) {
       alert("Login successful!");
-      // Optionally: set logged-in state
+      setUserRole("user");
+      localStorage.setItem("userRole", "user");
+      navigate("/");
       onClose();
     } else {
       alert("Invalid email or password!");
     }
   };
+
+  
+    
+
+    
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">

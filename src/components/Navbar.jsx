@@ -13,7 +13,7 @@ export default function Navbar({ dishes }) {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-
+  const [userRole, setUserRole] = useState(localStorage.getItem("userRole") || "");
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -35,6 +35,8 @@ export default function Navbar({ dishes }) {
 
   const handleLogout = () => {
     setUser(null);
+    localStorage.removeItem("user");
+    localStorage.removeItem("userRole");
     setIsDropdownOpen(false);
     navigate("/");
   };
@@ -129,7 +131,7 @@ export default function Navbar({ dishes }) {
 
           {isDropdownOpen && (
             <div className="absolute top-12 right-0 bg-white border shadow-md py-1 w-32">
-              {user ? (
+              {user || userRole === "admin"  ? (
                 <>
                   <button
                     onClick={handleMyProfile}
@@ -150,6 +152,7 @@ export default function Navbar({ dishes }) {
                     onClick={() => {
                       setShowLogin(true);
                       setIsDropdownOpen(false);
+                      // setUserRole={setUserRole};
                     }}
                     className="block w-full text-left px-4 py-1 hover:bg-gray-100"
                   >
@@ -176,6 +179,7 @@ export default function Navbar({ dishes }) {
                 const newUser = JSON.parse(localStorage.getItem("user"));
                 if (newUser) setUser(newUser);
               }}
+              setUserRole={setUserRole} 
             />
           )}
 
@@ -186,6 +190,7 @@ export default function Navbar({ dishes }) {
                 const newUser = JSON.parse(localStorage.getItem("user"));
                 if (newUser) setUser(newUser);
               }}
+              setUserRole={setUserRole} 
             />
           )}
         </div>

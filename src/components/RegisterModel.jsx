@@ -53,6 +53,7 @@ const RegisterModel = ({ onClose }) => {
 
     // Store in localStorage
     localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("userRole", "user");
     alert("User Registered Successfully!");
 
     onClose(); // close modal
