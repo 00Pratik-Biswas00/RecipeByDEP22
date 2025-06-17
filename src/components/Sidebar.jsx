@@ -23,13 +23,11 @@ export default function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
           >
             ✕
           </button>
-          {/* <span className="font-bold text-lg text-white text-right ml-4">LOGO</span> */}
-        {/* <div className="flex justify-between items-center mb-6">
-        </div> */}
+          
 
         <ul className="space-y-4 font-normal text-white mt-3 p-6 ">
           <li className="border-b py-2 "><Link onClick={() => setIsSidebarOpen(false)} to="/add">SUBMIT YOUR RECIPE →</Link></li>
-          <li className="border-b py-2"><Link onClick={() => setIsSidebarOpen(false)} to="/recipe">VIEW FAVORITES →</Link></li>
+          <li className="border-b py-2"><Link onClick={() => setIsSidebarOpen(false)} to="/fav-recipes">VIEW FAVORITES →</Link></li>
           <li className="border-b py-2"><Link onClick={() => setIsSidebarOpen(false)} to="/my-recipes">VIEW YOUR RECIPES →</Link></li>
           <li className="border-b py-2"><Link onClick={() => setIsSidebarOpen(false)} to="/recommended">RECOMMENDED RECIPES →</Link></li>
           <li className="border-b py-2">

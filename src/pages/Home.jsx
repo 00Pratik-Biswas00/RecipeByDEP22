@@ -1,130 +1,11 @@
 import React from "react";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import CuisineFilter from "../components/CuisineFilter";
+import dishes from "../data/recipes";
+
 
  const cuisines=["American","Italian", "Spanish", "Indian", "Lebanese", "Chinese", "Thai", "French", "Irish", "Mexican", "Meditreanian"];
-  const dishes = [
-  {
-    id: 1,
-    name: "Butter Chicken",
-    category: "Main Course",
-    cuisineType: "Indian",
-    difficultyLevel: "Medium",
-    rating: 4.5,
-    image: " ",
-    chef: "Chef Arjun Singh",
-    time: "45 mins",
-    tags: ["chicken", "spicy", "gravy", "north indian"]
-  },
-  {
-    id: 2,
-    name: "Margherita Pizza",
-    category: "Main Course",
-    cuisineType: "Italian",
-    difficultyLevel: "Easy",
-    rating: 4.2,
-    image: " ",
-    chef: "Chef Marco Rossi",
-    time: "30 mins",
-    tags: ["pizza", "cheese", "vegetarian", "baked"]
-  },
-  {
-    id: 3,
-    name: "Sushi Platter",
-    category: "Appetizer",
-    cuisineType: "Japanese",
-    difficultyLevel: "Hard",
-    rating: 3.5,
-    image: " ",
-    chef: "Chef Sato Kenji",
-    time: "50 mins",
-    tags: ["seafood", "sushi", "raw", "japanese"]
-  },
-  {
-    id: 4,
-    name: "Tacos Al Pastor",
-    category: "Street Food",
-    cuisineType: "Mexican",
-    difficultyLevel: "Easy",
-    rating: 4.0,
-    image: " ",
-    chef: "Chef Maria Lopez",
-    time: "25 mins",
-    tags: ["tacos", "pork", "street food", "spicy"]
-  },
-  {
-    id: 5,
-    name: "Pad Thai",
-    category: "Main Course",
-    cuisineType: "Thai",
-    difficultyLevel: "Medium",
-    rating: 3.9,
-    image: " ",
-    chef: "Chef Anong Srisuk",
-    time: "35 mins",
-    tags: ["noodles", "thai", "sweet", "spicy"]
-  },
-  {
-    id: 6,
-    name: "Grilled Salmon",
-    category: "Main Course",
-    cuisineType: "Indian",
-    difficultyLevel: "Medium",
-    rating: 4.7,
-    image: " ",
-    chef: "Chef Laura Johnson",
-    time: "40 mins",
-    tags: ["fish", "grilled", "healthy", "omega-3"]
-  },
-  {
-    id: 7,
-    name: "Peking Duck",
-    category: "Main Course",
-    cuisineType: "Chinese",
-    difficultyLevel: "Hard",
-    rating: 4.1,
-    image: " ",
-    chef: "Chef Wong Wei",
-    time: "90 mins",
-    tags: ["duck", "roasted", "crispy", "chinese"]
-  },
-  {
-    id: 8,
-    name: "Falafel Wrap",
-    category: "Street Food",
-    cuisineType: "Mexican",
-    difficultyLevel: "Easy",
-    rating: 3.8,
-    image: " ",
-    chef: "Chef Leila Hassan",
-    time: "20 mins",
-    tags: ["vegetarian", "wrap", "chickpeas", "healthy"]
-  },
-  {
-    id: 9,
-    name: "Beef Stroganoff",
-    category: "Main Course",
-    cuisineType: "Indian",
-    difficultyLevel: "Medium",
-    rating: 4.6,
-    image: " ",
-    chef: "Chef Dmitri Ivanov",
-    time: "60 mins",
-    tags: ["beef", "creamy", "comfort food", "russian"]
-  },
-  {
-    id: 10,
-    name: "Greek Salad",
-    category: "Appetizer",
-    cuisineType: "Thai",
-    difficultyLevel: "Easy",
-    rating: 4.3,
-    image: " ",
-    chef: "Chef Nikos Papadopoulos",
-    time: "15 mins",
-    tags: ["salad", "healthy", "feta", "vegetarian"]
-  }
-  ];
+
 
 function Home() {
 
@@ -138,7 +19,26 @@ function Home() {
       time:"",
   });
   const [sortBy, setSortBy] = useState("popularity");
+  const [likedDishes, setLikedDishes] = useState([]);
 
+  useEffect(() => {
+      // Load liked dishes from localStorage on page load
+      const storedLikes = JSON.parse(localStorage.getItem("likedDishes")) || [];
+      setLikedDishes(storedLikes);
+    }, []);
+
+  const handleLike = (dishId) => {
+    let updatedLikes = [];
+    if (likedDishes.includes(dishId)) {
+      // Unliking - remove from likes
+      updatedLikes = likedDishes.filter(id => id !== dishId);
+    } else {
+      // Liking - add to likes
+      updatedLikes = [...likedDishes, dishId];
+    }
+    setLikedDishes(updatedLikes);
+    localStorage.setItem("likedDishes", JSON.stringify(updatedLikes));
+  };
 
   const filteredDishes = dishes
   .filter(dish =>{ 
@@ -220,24 +120,26 @@ function Home() {
             <div className="relative">
               <div
                 className="w-full h-40 bg-gradient-to-br from-orange-400 via-yellow-500 to-red-500 flex items-center justify-center"
-                style={{
-                  backgroundImage: `url(${
-                    dish.imageUrl ||
-                    'https://t4.ftcdn.net/jpg/03/61/86/91/360_F_361869194_7JGmIOSj2iUNi0AYoVhVyhKvaN6PkOah.jpg'
-                  })`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  
-                }}
+                
               >
+                <img src={dish.image} className="bg-cover bg-center"/>
                 <div className="w-full h-full opacity-100 flex items-center justify-center">
                 </div>
               </div>
 
               {/* Heart Icon */}
-              <button className="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-red-50">
-                <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              <button
+                onClick={() => handleLike(dish.id)}
+                className="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md"
+              >
+                <svg
+                  className={`w-5 h-5 ${likedDishes.includes(dish.id) ? "text-red-500" : "text-gray-400"}`}
+                  fill={likedDishes.includes(dish.id) ? "currentColor" : "none"}
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
               </button>
             </div>

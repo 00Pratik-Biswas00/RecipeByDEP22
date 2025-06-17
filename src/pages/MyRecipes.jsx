@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from 'react';
-const dishes=[
-    {
-      id:1, name: "DISH1", category: "Category1", rating: 4.5, image: " ", chef: "cheftag1", time: "otherTag1" 
-    },
-    {id:2, name: "DISH2", category: "Category2", rating: 4.5, image: " ", chef: "cheftag2", time: "otherTag2" },
-    {id:1, name: "DISH3", category: "Category3", rating: 3.5, image: " ", chef: "cheftag3", time: "otherTag3" },
-    {id:1, name: "DISH4", category: "Category4", rating: 4.0, image: " ", chef: "cheftag4", time: "otherTag4" },
-    {id:1, name: "DISH5", category: "Category5", rating: 3.9, image: " ", chef: "cheftag5", time: "otherTag5" }
-
-  ];
+import dishes from '../data/recipes';
 
 
 function MyRecipes(){
@@ -33,16 +24,10 @@ function MyRecipes(){
                 <div className="relative">
                   <div
                     className="w-full h-40 bg-gradient-to-br from-orange-400 via-yellow-500 to-red-500 flex items-center justify-center"
-                    style={{
-                      backgroundImage: `url(${
-                        dish.imageUrl ||
-                        'https://t4.ftcdn.net/jpg/03/61/86/91/360_F_361869194_7JGmIOSj2iUNi0AYoVhVyhKvaN6PkOah.jpg'
-                      })`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                      
-                    }}
+                    
                   >
+                                    <img src={dish.image} className="bg-cover bg-center"/>
+
                     <div className="w-full h-full opacity-100 flex items-center justify-center">
                     </div>
                   </div>

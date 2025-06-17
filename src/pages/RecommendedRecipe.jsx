@@ -1,134 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-
-  const dishes = [
-  {
-    id: 1,
-    name: "Butter Chicken",
-    category: "Main Course",
-    cuisineType: "Indian",
-    difficultyLevel: "Medium",
-    rating: 4.5,
-    image: " ",
-    chef: "Chef Arjun Singh",
-    time: "45 mins",
-    tags: ["chicken", "spicy", "gravy", "north indian"]
-  },
-  {
-    id: 2,
-    name: "Margherita Pizza",
-    category: "Main Course",
-    cuisineType: "Italian",
-    difficultyLevel: "Easy",
-    rating: 4.2,
-    image: " ",
-    chef: "Chef Marco Rossi",
-    time: "30 mins",
-    tags: ["pizza", "cheese", "vegetarian", "baked"]
-  },
-  {
-    id: 3,
-    name: "Sushi Platter",
-    category: "Appetizer",
-    cuisineType: "Japanese",
-    difficultyLevel: "Hard",
-    rating: 3.5,
-    image: " ",
-    chef: "Chef Sato Kenji",
-    time: "50 mins",
-    tags: ["seafood", "sushi", "raw", "japanese"]
-  },
-  {
-    id: 4,
-    name: "Tacos Al Pastor",
-    category: "Street Food",
-    cuisineType: "Mexican",
-    difficultyLevel: "Easy",
-    rating: 4.0,
-    image: " ",
-    chef: "Chef Maria Lopez",
-    time: "25 mins",
-    tags: ["tacos", "pork", "street food", "spicy"]
-  },
-  {
-    id: 5,
-    name: "Pad Thai",
-    category: "Main Course",
-    cuisineType: "Thai",
-    difficultyLevel: "Medium",
-    rating: 3.9,
-    image: " ",
-    chef: "Chef Anong Srisuk",
-    time: "35 mins",
-    tags: ["noodles", "thai", "sweet", "spicy"]
-  },
-  {
-    id: 6,
-    name: "Grilled Salmon",
-    category: "Main Course",
-    cuisineType: "Indian",
-    difficultyLevel: "Medium",
-    rating: 4.7,
-    image: " ",
-    chef: "Chef Laura Johnson",
-    time: "40 mins",
-    tags: ["fish", "grilled", "healthy", "omega-3"]
-  },
-  {
-    id: 7,
-    name: "Peking Duck",
-    category: "Main Course",
-    cuisineType: "Chinese",
-    difficultyLevel: "Hard",
-    rating: 4.1,
-    image: " ",
-    chef: "Chef Wong Wei",
-    time: "90 mins",
-    tags: ["duck", "roasted", "crispy", "chinese"]
-  },
-  {
-    id: 8,
-    name: "Falafel Wrap",
-    category: "Street Food",
-    cuisineType: "Mexican",
-    difficultyLevel: "Easy",
-    rating: 3.8,
-    image: " ",
-    chef: "Chef Leila Hassan",
-    time: "20 mins",
-    tags: ["vegetarian", "wrap", "chickpeas", "healthy"]
-  },
-  {
-    id: 9,
-    name: "Beef Stroganoff",
-    category: "Main Course",
-    cuisineType: "Indian",
-    difficultyLevel: "Medium",
-    rating: 4.6,
-    image: " ",
-    chef: "Chef Dmitri Ivanov",
-    time: "60 mins",
-    tags: ["beef", "creamy", "comfort food", "russian"]
-  },
-  {
-    id: 10,
-    name: "Greek Salad",
-    category: "Appetizer",
-    cuisineType: "Thai",
-    difficultyLevel: "Easy",
-    rating: 4.3,
-    image: " ",
-    chef: "Chef Nikos Papadopoulos",
-    time: "15 mins",
-    tags: ["salad", "healthy", "feta", "vegetarian"]
-  }
-  ];
+import dishes from "../data/recipes";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-function RecomendedRecipe() {
+function RecommendedRecipe() {
   const query = useQuery();
 
   const [filters, setFilters] = useState({
@@ -214,16 +92,10 @@ function RecomendedRecipe() {
                 <div className="relative">
                   <div
                     className="w-full h-40 bg-gradient-to-br from-orange-400 via-yellow-500 to-red-500 flex items-center justify-center"
-                    style={{
-                      backgroundImage: `url(${
-                        dish.imageUrl ||
-                        'https://t4.ftcdn.net/jpg/03/61/86/91/360_F_361869194_7JGmIOSj2iUNi0AYoVhVyhKvaN6PkOah.jpg'
-                      })`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                      
-                    }}
+                    
                   >
+                                    <img src={dish.image} className="bg-cover bg-center"/>
+
                     <div className="w-full h-full opacity-100 flex items-center justify-center">
                     </div>
                   </div>
@@ -244,7 +116,7 @@ function RecomendedRecipe() {
                       <p className="text-sm text-gray-600">{dish.category}</p>
                     </div>
                     
-                        <div className="bg-cyan-500 text-white w-10 h-10 flex items-center justify-center font-semibold">
+                        <div className="bg-cyan-500 text-white w-10 h-10 flex items-center justify-center font-semibold rounded-full">
                           U
                         </div>
                       
@@ -295,4 +167,4 @@ function RecomendedRecipe() {
   );
 }
 
-export default RecomendedRecipe;
+export default RecommendedRecipe;
