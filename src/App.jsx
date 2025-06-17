@@ -1,6 +1,6 @@
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import React from "react";
 import RecipeDetails from "./pages/RecipeDetails";
 import AddOrEditRecipe from "./pages/AddOrEditRecipe";
 import MyRecipes from "./pages/MyRecipes";
@@ -9,6 +9,9 @@ import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import RecommendedRecipe from "./pages/RecommendedRecipe"
 import FavRecipes from "./pages/FavRecipes";
+
+
+import dishes from "./data/recipes";
 
 function App() {
     return (
@@ -23,13 +26,13 @@ function App() {
     }}
     >
         <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home dishes={dishes} />} />
         <Route path="/add" element={<AddOrEditRecipe />} />
         <Route path="/edit" element={<RecipeDetails />} />
-        <Route path="/my-recipes" element={<MyRecipes />} />
-        <Route path="/recommended" element={<RecommendedRecipe />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/fav-recipes" element={<FavRecipes />} />
+        <Route path="/my-recipes" element={<MyRecipes dishes={dishes} />} />
+        <Route path="/recommended" element={<RecommendedRecipe dishes={dishes} />} />
+        <Route path="/profile" element={<Profile dishes={dishes}/>} />
+        <Route path="/fav-recipes" element={<FavRecipes dishes={dishes} />} />
         <Route path="*" element={<NotFound />} />
     </Routes>
     </div>

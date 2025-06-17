@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import dishes from '../data/recipes';
 
-function FavRecipes() {
+function FavRecipes({dishes}) {
   const [likedDishes, setLikedDishes] = useState([]);
 
   useEffect(() => {

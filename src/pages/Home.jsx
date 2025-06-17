@@ -1,13 +1,12 @@
 import React from "react";
 import {useState, useEffect} from "react";
 import CuisineFilter from "../components/CuisineFilter";
-import dishes from "../data/recipes";
 
 
  const cuisines=["American","Italian", "Spanish", "Indian", "Lebanese", "Chinese", "Thai", "French", "Irish", "Mexican", "Meditreanian"];
 
 
-function Home() {
+function Home({dishes}) {
 
   const [selectedCuisine, setSelectedCuisine]=useState("American");
   const [showRegister, setShowRegister] = useState(false);

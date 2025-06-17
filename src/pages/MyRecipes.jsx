@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import dishes from '../data/recipes';
 
 
-function MyRecipes(){
+function MyRecipes({dishes}){
     const [user, setUser] = useState(null);
       useEffect(() => {
         const storedUser = JSON.parse(localStorage.getItem("user"));

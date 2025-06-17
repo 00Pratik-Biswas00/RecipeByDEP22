@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import dishes from "../data/recipes";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-function RecommendedRecipe() {
+function RecommendedRecipe({dishes}) {
   const query = useQuery();
 
   const [filters, setFilters] = useState({

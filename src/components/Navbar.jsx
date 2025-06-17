@@ -13,6 +13,7 @@ export default function Navbar() {
   const [user, setUser] = useState(null);
 
   const navigate = useNavigate();
+  const location = useLocation(); // <--- added here
 
   // Load user from localStorage on mount
   useEffect(() => {
@@ -32,16 +33,14 @@ export default function Navbar() {
   };
 
   const handleLogout = () => {
-    // localStorage.removeItem("user");
     setUser(null);
     setIsDropdownOpen(false);
-    // Optional: you can navigate to home after logout
     navigate("/");
   };
 
   return (
     <>
-      <nav className="bg-gray-800 px-4 py-3 flex items-center justify-between">
+      <nav className="bg-gray-700 px-4 py-3 flex items-center justify-between">
         {/* Left side - Hamburger menu and Logo */}
         <div className="flex items-center space-x-4">
           <button
@@ -55,24 +54,26 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Center - Search bar */}
-        <div className="flex-1 max-w-md mx-4">
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search by recipes, cuisine, category, tags..."
-              className="w-full bg-white rounded-full px-4 py-2 pr-10 text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-              🔍
+        {/* Center - Search bar (only on / route) */}
+        {location.pathname === "/" && (
+          <div className="flex-1 max-w-md mx-4">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search by recipes, cuisine, category, tags..."
+                className="w-full bg-white rounded-full px-4 py-2 pr-10 text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                🔍
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* Right side - Profile */}
         <div className="relative flex items-center">
           <button
-            className="w-10 h-10 rounded-full overflow-hidden  border-cyan-500"
+            className="w-10 h-10 rounded-full overflow-hidden border-cyan-500"
             onClick={handleProfile}
           >
             {user && user.image ? (
@@ -88,20 +89,19 @@ export default function Navbar() {
             <div className="absolute top-12 right-0 bg-white border shadow-md py-1 w-32">
               {user ? (
                 <>
-                <button
-                  onClick={handleMyProfile}
-                  className="block w-full text-left px-4 py-1 hover:bg-gray-100"
-                >
-                  Profile
-                </button>
-                <button
-                  onClick={handleLogout}
-                  className="block w-full text-left px-4 py-1 hover:bg-gray-100"
-                >
-                  Logout
-                </button>
+                  <button
+                    onClick={handleMyProfile}
+                    className="block w-full text-left px-4 py-1 hover:bg-gray-100"
+                  >
+                    Profile
+                  </button>
+                  <button
+                    onClick={handleLogout}
+                    className="block w-full text-left px-4 py-1 hover:bg-gray-100"
+                  >
+                    Logout
+                  </button>
                 </>
-                
               ) : (
                 <>
                   <button
@@ -131,7 +131,6 @@ export default function Navbar() {
             <RegisterModel
               onClose={() => {
                 setShowRegister(false);
-                // Refresh user after register
                 const newUser = JSON.parse(localStorage.getItem("user"));
                 if (newUser) setUser(newUser);
               }}
@@ -142,7 +141,6 @@ export default function Navbar() {
             <LoginModel
               onClose={() => {
                 setShowLogin(false);
-                // Refresh user after login
                 const newUser = JSON.parse(localStorage.getItem("user"));
                 if (newUser) setUser(newUser);
               }}
