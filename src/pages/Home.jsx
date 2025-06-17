@@ -1,5 +1,6 @@
 import React from "react";
 import {useState, useEffect} from "react";
+import { Link } from "react-router-dom";
 import CuisineFilter from "../components/CuisineFilter";
 
 
@@ -114,7 +115,7 @@ function Home({dishes}) {
       {/* Dish Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-14">
         {filteredDishes.map((dish) => (
-          <div key={dish.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+          <Link to={`/dish/${dish.id}`} key={dish.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
             {/* Image Container */}
             <div className="relative">
               <div
@@ -128,8 +129,13 @@ function Home({dishes}) {
 
               {/* Heart Icon */}
               <button
-                onClick={() => handleLike(dish.id)}
-                className="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md"
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault(); // Stop Link navigation
+                  e.stopPropagation(); // Stop bubbling up to Link
+                  handleLike(dish.id); // Run your like handler
+                }}
+                className="z-50 absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md"
               >
                 <svg
                   className={`w-5 h-5 ${likedDishes.includes(dish.id) ? "text-red-500" : "text-gray-400"}`}
@@ -141,6 +147,7 @@ function Home({dishes}) {
                     d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
               </button>
+
             </div>
 
             {/* Card Content */}
@@ -190,7 +197,7 @@ function Home({dishes}) {
                 <span className="text-base text-gray-600">{dish.rating} (5K)</span>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 

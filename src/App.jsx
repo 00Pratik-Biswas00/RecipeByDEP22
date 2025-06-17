@@ -28,7 +28,7 @@ function App() {
         <Routes>
         <Route path="/" element={<Home dishes={dishes} />} />
         <Route path="/add" element={<AddOrEditRecipe />} />
-        <Route path="/edit" element={<RecipeDetails />} />
+        <Route path="/dish/:id" element={<RecipeDetails dishes={dishes}/>} />
         <Route path="/my-recipes" element={<MyRecipes dishes={dishes} />} />
         <Route path="/recommended" element={<RecommendedRecipe dishes={dishes} />} />
         <Route path="/profile" element={<Profile dishes={dishes}/>} />
